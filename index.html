@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Home - Calculadora de precios de obras de Arte</title>
+    <link rel="icon" type="image/x-icon" href="./assets/logo/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Merienda:wght@300;400;500;600;700;800;900&family=Monsieur+La+Doulaise&family=Petrona:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rufina:wght@400;700&family=Satisfy&display=swap" rel="stylesheet">
+
+    <!-- toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- defer doesn't block page load -->
+    <script defer src="./js/index.js"></script>
+  </head>
+  
+  <body class="gridLayout">
+    <header class="gridTop">
+      <a href="#">
+	<h1>Calculadora de precios de obras de Arte</h1>
+      </a>
+    </header>
+
+    <nav class="gridCenterLeft">
+      <ul>
+	<li><a href="#">Home</a>
+	<li><a href="./pages/about.html">About</a>
+	<li><a href="./pages/contact.html">Contacto</a>
+      </ul>
+    </nav>
+    
+    <main class="gridCenter">
+      <h2>¿Cómo ponerle precio a tu obra de arte?</h2>
+      <p>Puedes utilizar esta calculadora para saber cuánto deberías cobrar por tu objeto artístico.</p>
+      <p>El precio se calcula a partir de la fórmula:</p>
+      <!-- <p>precio = ( ( ( horas * valorHora ) + costoMateriales ) * ( ( margenGanancia / 100 ) + 1 ) ) * 1.19</p> -->
+
+      <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>o</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mi>h</mi><mi>o</mi><mi>r</mi><mi>a</mi><mi>s</mi><mi>T</mi><mi>r</mi><mi>a</mi><mi>b</mi><mi>a</mi><mi>j</mi><mi>a</mi><mi>d</mi><mi>a</mi><mi>s</mi><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mi>v</mi><mi>a</mi><mi>l</mi><mi>o</mi><mi>r</mi><mi>H</mi><mi>o</mi><mi>r</mi><mi>a</mi><mo>&#xA0;</mo><mo>+</mo><mo>&#xA0;</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mi>o</mi><mi>M</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>l</mi><mi>e</mi><mi>s</mi><mo>&#xA0;</mo><mo>)</mo><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mfrac><mrow><mi>m</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>G</mi><mi>a</mi><mi>n</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>i</mi><mi>a</mi></mrow><mn>100</mn></mfrac><mo>&#xA0;</mo><mo>+</mo><mo>&#xA0;</mo><mn>1</mn><mo>&#xA0;</mo><mo>)</mo><mo>&#xA0;</mo><mo>)</mo><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mn>1.19</mn></math>
+
+      <br>
+      <br>
+      <p>El IVA en Chile corresponde al 19%, lo que explica la multiplicación por 1.19.</p>
+
+      <hr>
+      
+      <p>Ingresa tus datos de manera estimada en caso de no lleves control de tus horas trabajadas.</p>
+
+      <form class="formCalcularPrecio">
+	<label for="horas">Horas trabajas en tu obra: </label>
+	<input type="number" step="0.01" min="0" placeholder="4.5" name="horas" id="horas" required />
+
+	<label for="valorHora">Cuanto vale 1 hora de tu trabajo ($CLP): </label>
+	<input type="number" placeholder="4500" name="valorHora" id="valorHora" required />
+
+	<label for="costoMateriales">Costo de tus materiales ($CLP): </label>
+	<input type="number" placeholder="12000" name="costoMateriales" id="costoMateriales" required />
+
+	<label for="margenGanancia">Margen de ganancia (%): </label>
+	<input type="number" placeholder="50" name="margenGanancia" id="margenGanancia" required />
+	
+	<!-- <input type="submit" value="Calcular" /> -->
+	<button type="submit"><p>Calcular</p></button>
+      </form>
+
+      <div class="precioCalculado">
+	
+      </div>
+      
+      <hr>
+
+      <h3>Agregando el factor de popularidad</h3>
+
+      <p>Además del calculo de nuestro precio según teoría del valor-trabajo, debemos considerar que la popularidad de un artista influye en el precio que él puede cobrar. Calcular esto puede volverse muy complejo, pero para este ejercicio podemos simplemente usar una métrica como la cantidad de seguidores en Instagram y decir, por ejemplo, que cada seguidor nos contribuye en $15 al precio de venta final de nuestra obra.</p>
+
+      <p>El factor de popularidad de un artista nos agregaría valor de esta forma:</p>
+      <p> fp = cantidadDeSeguidoresEnInstragram * 15</p>
+
+      <p>Aquí hay una lista de artistas chilenos notables con los que nos podriamos comparar. Junto a su nombre esta la cantidad de seguidores en Instagram que tenían en octubre 2023.</p>
+
+      <table>
+	<thead>
+	  <tr>
+	    <th>Artista</th>
+	    <th>Seguidores en Instagram</th>
+	    <th>Factor de popularidad</th>
+	  </tr>
+	</thead>
+	<tbody class="tablaArtistas">
+	  
+	</tbody>
+      </table>
+
+      <hr>
+      
+      <p>Puedes agregar nuevos artistas a la tabla con el formulario siguiente</p>
+      
+      <form class="formAgregarArtista">
+	<label for="nombre">Nombre del Artista: </label>
+	<input type="text" placeholder="Nombre" name="nombre" id="nombre" required />
+
+	<label for="seguidores">Seguidores en Instagram: </label>
+	<input type="number" placeholder="500" name="seguidores" id="seguidores" required />
+	
+	<!-- <input type="submit" value="Calcular" /> -->
+	<button type="submit"><p>Agregar Artista</p></button>
+      </form>
+    </main>
+
+    <footer class="gridBottom">
+      <p>Copyright © 2023 alepaillas.
+    </footer>
+
+    <!-- toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  </body>
+</html>

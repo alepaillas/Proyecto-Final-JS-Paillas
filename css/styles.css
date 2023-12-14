@@ -1,0 +1,377 @@
+/* COLORS */
+
+* {
+    --text-color: #0d0d0d;
+    /* --background-color: #e7ebdb; */
+    --background-color: #f0eae1;
+    --primary-color: #a63d17;
+    --primary-color-drop-shadow: #a63d1770;
+    --secondary-color: #a59f40;
+    --accent-color: #492a03;
+    --accent-color-drop-shadow: #492a0340;
+}
+
+/* * { */
+/*     --text-color: #f2f2f2; */
+/*     --background-color: #202414; */
+/*     --primary-color: #e87f59; */
+/*     --secondary-color: #bfb85a; */
+/*     --accent-color: #492a03; */
+/* } */
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+}
+
+a {
+    color: var(--accent-color);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+a:visited {
+    color: var(--secondary-color);
+}
+
+a:link {
+}
+
+a:focus {
+}
+
+a:active {
+}
+
+button {
+    /* background-color: var(--secondary-color); */
+    /* color: var(--text-color); */
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+/* css reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* 62.5% font-size trick */
+/* 1rem = 10px */
+html {
+    font-size: 62.5%
+}
+body {
+    font-size: 1.6rem;
+}
+
+/* LAYOUT */
+
+.gridLayout {
+    display: grid;
+    grid-template-columns: 1fr 66% 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+@media screen and (min-width: 0rem) {
+    .gridLayout {
+	grid-template-rows: 20rem 1fr 10rem;
+    }
+    
+    .gridTop {
+	grid-area: 1 / 1 / 2 / 3;
+    }
+    
+    .gridCenter {
+	grid-area: 2 / 1 / 3 / 4;
+    }
+
+    .gridCenterLeft {
+	grid-area: 1 / 3 / 2 / 4;
+	align-self: center;
+    }
+}
+
+@media screen and (min-width: 22rem) {
+    .gridLayout {
+	grid-template-rows: 30rem 1fr 10rem;
+    }
+}
+
+@media screen and (min-width: 32rem) {
+    .gridLayout {
+	grid-template-rows: 20rem 1fr 10rem;
+    }
+    
+    .gridTop {
+	grid-area: 1 / 1 / 2 / 4;
+    }
+    
+    .gridCenter {
+	grid-area: 2 / 2 / 3 / 4;
+    }
+
+    .gridCenterLeft {
+	grid-area: 2 / 1 / 3 / 2;
+	align-self: start ;
+    }
+}
+
+@media screen and (min-width: 76.8rem) {
+    .gridLayout {
+	grid-template-rows: 40rem 1fr 10rem;
+    }
+    
+    .gridCenter {
+	grid-area: 2 / 2 / 3 / 3;
+    }
+}
+
+.gridTop {
+    align-self: center;
+}
+
+.gridCenter {
+    justify-self: center;
+}
+
+.gridCenterLeft {
+    justify-self: center;
+}
+
+.gridCenterRight {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.gridBottom {
+    grid-area: 3 / 1 / 4 / 4;
+    justify-self: center;
+}
+
+main {
+    max-width: 70rem;
+}
+
+/* FONTS */
+
+/* made using: */
+/* https://www.layoutgridcalculator.com/type-scale/ */
+/* golden ratio, tetratonic scale, pentagonal series */
+/* base 18pt */
+
+/* * { */
+/*     --fs-xxxxl: 9.7rem; */
+/*     --fs-xxxl: 6.775rem; */
+/*     --fs-xxl: 3.725rem; */
+/*     --fs-xl: 2.925em; */
+/*     --fs-l: 2.05rem; */
+/*     --fs-m: 1.8rem; */
+/*     --fs-s: 1.425rem; */
+/*     --fs-xs: 1.275rem; */
+/* } */
+
+/* made using: */
+/* https://www.layoutgridcalculator.com/type-scale/ */
+/* golden ratio, tetratonic scale, lucas series */
+/* base 18pt */
+
+* {
+    --fs-xxxxl: 13.925rem;
+    --fs-xxxl: 6rem;
+    --fs-xxl: 3.725rem;
+    --fs-xl: 2.6rem;
+    --fs-l: 2.3rem;
+    --fs-m: 1.8rem;
+    --fs-s: 1.425rem;
+    --fs-xs: 1.275rem;
+}
+
+@media screen and (min-width: 0rem) {
+    h1 {font-size: var(--fs-xxl);}
+    h2 {font-size: var(--fs-l);}
+    h3 {font-size: var(--fs-m);}
+    h4 {font-size: var(--fs-s);}
+    h5 {font-size: var(--fs-s);}
+    h6 {font-size: var(--fs-s);}
+
+    nav {font-size: var(--fs-xs);}
+    
+    main {font-size: var(--fs-s);}
+
+    footer {font-size: var(--fs-xs);}
+}
+
+@media screen and (min-width: 22rem) {
+    h1 {font-size: var(--fs-xxxl);}
+    h2 {font-size: var(--fs-xxl);}
+    h3 {font-size: var(--fs-xl);}
+    h4 {font-size: var(--fs-l);}
+    h5 {font-size: var(--fs-m);}
+    h6 {font-size: var(--fs-m);}
+
+    nav {font-size: var(--fs-s);}
+    
+    main {font-size: var(--fs-m);}
+
+    footer {font-size: var(--fs-s);}
+}
+
+@media screen and (min-width: 32rem) {
+    h1 {font-size: var(--fs-xxxl);}
+    h2 {font-size: var(--fs-xxl);}
+    h3 {font-size: var(--fs-xl);}
+    h4 {font-size: var(--fs-l);}
+    h5 {font-size: var(--fs-m);}
+    h6 {font-size: var(--fs-m);}
+
+    nav {font-size: var(--fs-l);}
+    
+    main {font-size: var(--fs-m);}
+
+    footer {font-size: var(--fs-s);}
+}
+
+@media screen and (min-width: 76.8rem) {
+    h1 {font-size: var(--fs-xxxxl);}
+    h2 {font-size: var(--fs-xxxl);}
+    h3 {font-size: var(--fs-xxl);}
+    h4 {font-size: var(--fs-xl);}
+    h5 {font-size: var(--fs-l);}
+    h6 {font-size: var(--fs-m);}
+
+    nav {font-size: var(--fs-l);}
+    
+    main {font-size: var(--fs-m);}
+
+    footer {font-size: var(--fs-s);}
+}
+
+body {
+    font-family: 'Petrona', serif;
+}
+
+h1 {
+    font-family: 'Mea Culpa', cursive;
+    font-weight: normal;
+    filter: drop-shadow(.5rem .5rem .5rem var(--accent-color-drop-shadow));
+    /* doesn't look the same */
+    /* text-shadow: .5rem .5rem .5rem var(--accent-color-drop-shadow); */
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Charm', cursive;
+    font-weight: normal;
+    filter: drop-shadow(.5rem .5rem .5rem var(--accent-color-drop-shadow));
+}
+
+/* MARGINS */
+
+header {
+    margin-left: 4rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+}
+
+nav {
+    margin-top: 3rem;
+}
+
+main {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+main ul li {
+    margin-left: 1.5rem;
+}
+
+footer {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 2rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+hr {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+button {
+    margin-top: 2rem;
+    margin-right: 1rem;
+}
+
+button p {
+    margin: 1rem;
+}
+
+/* GENERAL */
+
+header a {
+    text-decoration: none;
+}
+
+nav ul li {
+    list-style: none;
+}
+
+/* css image reset from kevin powell */
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    font-style: italic;
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 1rem;
+}
+
+button {
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 0 0 1.5rem .2rem var(--primary-color-drop-shadow);
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(1);
+}
+
+form {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+form label, form input {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+/* toastify */
+
+/* toastify */
+button.toast-close {
+    margin-top: 0;
+}
+
+.toastify {
+    background: var(--secondary-color);
+}
