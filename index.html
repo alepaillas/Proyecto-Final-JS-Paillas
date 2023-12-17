@@ -15,21 +15,28 @@
     <!-- toastify -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+    <script defer src="./js/katexConfig.js"></script>
+
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/styles.css">
 
     <!-- defer doesn't block page load -->
     <script defer src="./js/index.js"></script>
+    <script defer src="./js/comments.js"></script>
   </head>
   
   <body class="gridLayout">
-    <header class="gridTop">
+    <header class="gridHeader">
       <a href="#">
 	<h1>Calculadora de precios de obras de Arte</h1>
       </a>
     </header>
 
-    <nav class="gridCenterLeft">
+    <nav class="gridSidebar">
       <ul>
 	<li><a href="#">Home</a>
 	<li><a href="./pages/about.html">About</a>
@@ -37,21 +44,21 @@
       </ul>
     </nav>
     
-    <main class="gridCenter">
+    <main class="gridMain">
       <h2>¿Cómo ponerle precio a tu obra de arte?</h2>
       <p>Puedes utilizar esta calculadora para saber cuánto deberías cobrar por tu objeto artístico.</p>
       <p>El precio se calcula a partir de la fórmula:</p>
-      <!-- <p>precio = ( ( ( horas * valorHora ) + costoMateriales ) * ( ( margenGanancia / 100 ) + 1 ) ) * 1.19</p> -->
 
-      <math xmlns="http://www.w3.org/1998/Math/MathML"><mi>p</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>i</mi><mi>o</mi><mo>&#xA0;</mo><mo>=</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mi>h</mi><mi>o</mi><mi>r</mi><mi>a</mi><mi>s</mi><mi>T</mi><mi>r</mi><mi>a</mi><mi>b</mi><mi>a</mi><mi>j</mi><mi>a</mi><mi>d</mi><mi>a</mi><mi>s</mi><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mi>v</mi><mi>a</mi><mi>l</mi><mi>o</mi><mi>r</mi><mi>H</mi><mi>o</mi><mi>r</mi><mi>a</mi><mo>&#xA0;</mo><mo>+</mo><mo>&#xA0;</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mi>o</mi><mi>M</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi><mi>i</mi><mi>a</mi><mi>l</mi><mi>e</mi><mi>s</mi><mo>&#xA0;</mo><mo>)</mo><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mo>(</mo><mo>&#xA0;</mo><mfrac><mrow><mi>m</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>e</mi><mi>n</mi><mi>G</mi><mi>a</mi><mi>n</mi><mi>a</mi><mi>n</mi><mi>c</mi><mi>i</mi><mi>a</mi></mrow><mn>100</mn></mfrac><mo>&#xA0;</mo><mo>+</mo><mo>&#xA0;</mo><mn>1</mn><mo>&#xA0;</mo><mo>)</mo><mo>&#xA0;</mo><mo>)</mo><mo>&#xA0;</mo><mo>*</mo><mo>&#xA0;</mo><mn>1.19</mn></math>
+      <!-- latex math expression rendered by katex -->
+      $$
+      precio=((horasTrabajadas*valorHora+costoMateriales)*(\frac{margenGanancia}{100}+1))*1.19
+      $$
 
-      <br>
-      <br>
       <p>El IVA en Chile corresponde al 19%, lo que explica la multiplicación por 1.19.</p>
 
       <hr>
       
-      <p>Ingresa tus datos de manera estimada en caso de no lleves control de tus horas trabajadas.</p>
+      <p>Ingresa tus datos de manera estimada en caso de que no lleves control de tus horas trabajadas.</p>
 
       <form class="formCalcularPrecio">
 	<label for="horas">Horas trabajas en tu obra: </label>
@@ -81,8 +88,11 @@
       <p>Además del calculo de nuestro precio según teoría del valor-trabajo, debemos considerar que la popularidad de un artista influye en el precio que él puede cobrar. Calcular esto puede volverse muy complejo, pero para este ejercicio podemos simplemente usar una métrica como la cantidad de seguidores en Instagram y decir, por ejemplo, que cada seguidor nos contribuye en $15 al precio de venta final de nuestra obra.</p>
 
       <p>El factor de popularidad de un artista nos agregaría valor de esta forma:</p>
-      <p> fp = cantidadDeSeguidoresEnInstragram * 15</p>
 
+      $$
+      fp = cantidadDeSeguidoresEnInstragram * 15
+      $$
+      
       <p>Aquí hay una lista de artistas chilenos notables con los que nos podriamos comparar. Junto a su nombre esta la cantidad de seguidores en Instagram que tenían en octubre 2023.</p>
 
       <table>
@@ -114,7 +124,31 @@
       </form>
     </main>
 
-    <footer class="gridBottom">
+    <section class="gridComments">
+      <h2>Comentarios</h2>
+
+      <p>¿Que te ha parecido este método? ¿Te queda alguna duda o harías algo distinto? Deja tu comentario y trataré de responderlo lo más pronto posible.</p>
+
+      <form class="formComentarios">
+	<label for="autor">Tu nombre: </label>
+	<input type="text" name="autor" id="autor" required />
+
+	<label for="mensaje">Tu comentario: </label>
+	<input type="text" name="mensaje" id="mensaje" required />
+	
+	<button type="submit"><p>Enviar</p></button>
+      </form>
+
+      <div class="loader">
+	
+      </div>
+
+      <div class="comentariosWrapper">
+	
+      </div>
+    </section>
+    
+    <footer class="gridFooter">
       <p>Copyright © 2023 alepaillas.
     </footer>
 
