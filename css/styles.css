@@ -40,14 +40,14 @@ a:visited {
     color: var(--secondary-color);
 }
 
-a:link {
+/* a:link {
 }
 
 a:focus {
 }
 
 a:active {
-}
+} */
 
 button {
     /* background-color: var(--secondary-color); */
@@ -332,6 +332,14 @@ button p {
     margin: 1rem;
 }
 
+form input {
+    padding: 0.5rem;
+}
+
+td, th {
+    padding: 0.5rem;
+}
+
 /* GENERAL */
 
 header a {
@@ -430,4 +438,18 @@ button.toast-close {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+form textarea {
+    resize: none;
+    width: 99%;
+    height: 10rem;
+}
+
+th {
+    text-align: left;
+}
+
+.preWrap {
+    white-space: pre-wrap;
 }

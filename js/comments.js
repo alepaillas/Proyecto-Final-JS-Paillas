@@ -11,6 +11,7 @@ function crearComentario(comentario) {
     divComentario.classList.add("comment")
     fragmentComentario.appendChild(divComentario)
     let mensajeComentario = document.createElement("p")
+    mensajeComentario.classList.add("preWrap")
     mensajeComentario.textContent = comentario.mensaje
     divComentario.appendChild(mensajeComentario)
     let autorComentario = document.createElement("p")
@@ -35,11 +36,28 @@ async function postComentario(data) {
 	});
 
 	const result = await response.json();
-	console.log("Success:", result);
+	// console.log("Success:", result);
+
+    Toastify({
+        text: "Se ha publicado tu comentario",
+        duration: 3000,
+        close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: true
+    }).showToast();
 
 	crearComentario(data)
     } catch (error) {
-	console.error("Error:", error);
+        console.error("Error:", error);
+        Toastify({
+            text: "Hubo un error al publicar tu comentario",
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true
+        }).showToast();
     }
 }
 
@@ -67,7 +85,15 @@ async function getComentarios() {
 	const loader = document.querySelector(".loader")
 	loader.style.display = "none"
     } catch (error) {
-	console.error("Error:", error)
+        console.error("Error:", error)
+        Toastify({
+            text: "No pudimos recuperar los comentarios de la base de datos",
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true
+        }).showToast();
     }
 }
 
