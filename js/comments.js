@@ -1,7 +1,7 @@
 class comentario {
     constructor(autor, mensaje) {
-	this.autor = autor
-	this.mensaje = mensaje
+        this.autor = autor
+        this.mensaje = mensaje
     }
 }
 
@@ -23,31 +23,43 @@ function crearComentario(comentario) {
     comentariosWrapper.prepend(fragmentComentario) // prepend añade el elemento como primer hijo
 }
 
+function insertarDivError(comentario) {
+    // template literal
+    let divError =
+    `
+    <div class="divError">
+        <p>Ocurrió un error al cargar los comentarios.</p>
+    </div>
+    `
+    const comentariosWrapper = document.querySelector(".comentariosWrapper")
+    comentariosWrapper.innerHTML = divError
+}
+
 // receta de cocina obtenida de docs fetch en MDN
 // usamos mockAPI para guardar nuestros comentarios
 async function postComentario(data) {
     try {
-	const response = await fetch("https://657a8f911acd268f9afb39a2.mockapi.io/api/v1/Comments", {
-	    method: "POST", // or 'PUT'
-	    headers: {
-		"Content-Type": "application/json",
-	    },
-	    body: JSON.stringify(data),
-	});
+        const response = await fetch("https://657a8f911acd268f9afb39a2.mockapi.io/api/v1/Comments", {
+            method: "POST", // or 'PUT'
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
 
-	const result = await response.json();
-	// console.log("Success:", result);
+        const result = await response.json();
+        // console.log("Success:", result);
 
-    Toastify({
-        text: "Se ha publicado tu comentario",
-        duration: 3000,
-        close: true,
-        gravity: "bottom",
-        position: "right",
-        stopOnFocus: true
-    }).showToast();
+        Toastify({
+            text: "Se ha publicado tu comentario",
+            duration: 3000,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true
+        }).showToast();
 
-	crearComentario(data)
+        crearComentario(data)
     } catch (error) {
         console.error("Error:", error);
         Toastify({
@@ -69,31 +81,27 @@ async function stall(stallTime = 3000) {
 // obtenemos los comentarios guardados en la base de datos
 async function getComentarios() {
     try {
-	// fetch sin method es GET por defecto
-	const response = await fetch("https://657a8f911acd268f9afb39a2.mockapi.io/api/v1/Comments")
-	await stall()
-	
-	if (!response.ok) {
-	    throw new Error("Network response was not OK");
-	}
-	const json = await response.json()
+        // fetch sin method es GET por defecto
+        const response = await fetch("https://657a8f911acd268f9afb39a2.mockapi.io/api/v1/Comments")
+        await stall()
+        
+        if (!response.ok) {
+            throw new Error("Network response was not OK");
+        }
 
-	json.forEach((comentarioJson) => {
-	    crearComentario(comentarioJson)
-	})
+        const json = await response.json()
 
-	const loader = document.querySelector(".loader")
-	loader.style.display = "none"
+        json.forEach((comentarioJson) => {
+            crearComentario(comentarioJson)
+        })
     } catch (error) {
         console.error("Error:", error)
-        Toastify({
-            text: "No pudimos recuperar los comentarios de la base de datos",
-            duration: 3000,
-            close: true,
-            gravity: "bottom",
-            position: "right",
-            stopOnFocus: true
-        }).showToast();
+        insertarDivError()
+    } finally {
+        // finally siempre se ejecuta independiente del resultado de la promesa
+        // quitamos el spinner cuando se resuelven todas las promesas
+        const loader = document.querySelector(".loader")
+        loader.style.display = "none"
     }
 }
 

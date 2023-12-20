@@ -453,3 +453,15 @@ th {
 .preWrap {
     white-space: pre-wrap;
 }
+
+.divError {
+    display: grid;
+    justify-content: center;
+}
+
+.divError p {
+    background-color: crimson;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    color: white;
+}

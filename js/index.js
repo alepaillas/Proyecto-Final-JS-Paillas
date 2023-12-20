@@ -1,28 +1,27 @@
 class datos {
     constructor(horas, valorHora, costoMateriales, margenGanancia) {
-	this.horas = horas
-	this.valorHora = valorHora
-	this.costoMateriales = costoMateriales
-	this.margenGanancia = margenGanancia
-	this.precio = 0
+        this.horas = horas
+        this.valorHora = valorHora
+        this.costoMateriales = costoMateriales
+        this.margenGanancia = margenGanancia
+        this.precio = 0
     }
-
     calcularPrecio() {
-	this.precio = (((this.horas * this.valorHora)
-			// +variable es unary plus operator
-			// hace una suma de numeros
-			// si le pasamos un string lo trata como un numero
-			+ +this.costoMateriales)
-		       * ((this.margenGanancia / 100) + 1))
-	    * 1.19 // 1.19 es el IVA en Chile que es el 19%
+        this.precio = (((this.horas * this.valorHora)
+                // +variable es unary plus operator
+                // hace una suma de numeros
+                // si le pasamos un string lo trata como un numero
+                + +this.costoMateriales)
+                * ((this.margenGanancia / 100) + 1))
+            * 1.19 // 1.19 es el IVA en Chile que es el 19%
     }
 }
 
 class artista {
     constructor(nombre, seguidoresEnInstagram) {
-	this.nombre = nombre
-	this.seguidoresEnInstagram = parseInt(seguidoresEnInstagram)
-	this.factorPopularidad = this.seguidoresEnInstagram * 15
+        this.nombre = nombre
+        this.seguidoresEnInstagram = parseInt(seguidoresEnInstagram)
+        this.factorPopularidad = this.seguidoresEnInstagram * 15
     }
 }
 
@@ -80,8 +79,6 @@ formCalcularPrecio.addEventListener('submit', (event) => {
     precioCalculado.appendChild(fragment)
 })
 
-
-
 // console.table(artistas)
 
 const tablaArtistas = document.querySelector(".tablaArtistas")
@@ -89,28 +86,43 @@ let fragmentTablaArtistas = document.createDocumentFragment()
 
 function popularTablaArtistas(artistas) {
     artistas.forEach((artista) => {
-	let tRow = document.createElement("tr")
-	
-	let tdName = document.createElement("td")
-	tdName.textContent = artista.nombre
-	tRow.appendChild(tdName)
-	
-	let tdFollowers = document.createElement("td")
-	tdFollowers.textContent = artista.seguidoresEnInstagram
-	tRow.appendChild(tdFollowers)
-	
-	let tdFP = document.createElement("td")
-	// suma de strings
-	tdFP.textContent = "$" + artista.factorPopularidad
-	tRow.appendChild(tdFP)
+        let tRow = document.createElement("tr")
+        
+        let tdName = document.createElement("td")
+        tdName.textContent = artista.nombre
+        tRow.appendChild(tdName)
+        
+        let tdFollowers = document.createElement("td")
+        tdFollowers.textContent = artista.seguidoresEnInstagram
+        tRow.appendChild(tdFollowers)
+        
+        let tdFP = document.createElement("td")
+        // suma de strings
+        tdFP.textContent = "$" + artista.factorPopularidad
+        tRow.appendChild(tdFP)
 
-	fragmentTablaArtistas.appendChild(tRow)
+        fragmentTablaArtistas.appendChild(tRow)
     })
-
     tablaArtistas.appendChild(fragmentTablaArtistas)
 }
 
 popularTablaArtistas(artistas)
+
+// recuperamos los nuevos artistas que esten en el storage
+let storageArtistas = localStorage.getItem('array de artistas')
+//console.table(storageArtistas)
+const arrayStorageArtistas = JSON.parse(storageArtistas)
+//console.table(arrayStorageArtistas)
+
+nuevosArtistas = []
+
+// operador && funciona como un if simple invocado de esta forma
+arrayStorageArtistas !== null && arrayStorageArtistas.forEach((artista) => {
+    nuevosArtistas.push(artista)
+})
+
+//console.table(nuevosArtistas)
+popularTablaArtistas(nuevosArtistas)
 
 // form agregar artistas
 const formAgregarArtista = document.querySelector(".formAgregarArtista")
@@ -151,19 +163,3 @@ formAgregarArtista.addEventListener('submit', (e) => {
 	stopOnFocus: true
     }).showToast();
 })
-
-// recuperamos los nuevos artistas que esten en el storage
-let storageArtistas = localStorage.getItem('array de artistas')
-//console.table(storageArtistas)
-const arrayStorageArtistas = JSON.parse(storageArtistas)
-//console.table(arrayStorageArtistas)
-
-nuevosArtistas = []
-
-// operador && funciona como un if simple invocado de esta forma
-arrayStorageArtistas !== null && arrayStorageArtistas.forEach((artista) => {
-    nuevosArtistas.push(artista)
-})
-
-//console.table(nuevosArtistas)
-popularTablaArtistas(nuevosArtistas)
